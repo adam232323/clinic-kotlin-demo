@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id:  3
+      author:  adam
+      changes:
+        - createTable:
+            tableName:  visit
+            columns:
+              - column:
+                  name:  id
+                  type:  bigint
+                  autoIncrement:  true
+                  constraints:
+                    primaryKey:  true
+                    nullable:  false
+              - column:
+                  name:  visit_time
+                  type:  datetime
+                  constraints:
+                    nullable:  false
+              - column:
+                  name:  clinic
+                  type:  varchar(255)
+                  constraints:
+                    nullable:  false
+              - column:
+                  name:  id_doctor
+                  type:  bigint
+                  constraints:
+                    nullable:  false
+                    foreignKeyName: fk_visit_doctor
+                    references: doctor(id)
+              - column:
+                  name:  id_patient
+                  type:  bigint
+                  constraints:
+                    nullable:  false
+                    foreignKeyName: fk_visit_patient
+                    references: patient(id)
+              - column:
+                  name:  version
+                  type:  int
+                  constraints:
+                    nullable:  false
+              - column:
+                  name:  created_at
+                  type:  datetime
+                  constraints:
+                    nullable:  false
+              - column:
+                  name:  edited_at
+                  type:  datetime
+                  constraints:
+                    nullable:  false
+        - createIndex:
+            tableName:  visit
+            indexName:  idx_visit_doctor
+            columns:
+              - column:
+                  name:  id_doctor
+        - createIndex:
+            tableName:  visit
+            indexName:  idx_visit_patient
+            columns:
+              - column:
+                  name:  id_patient

@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - logicalFilePath: db.changelog-master.yaml
+  - include:
+      relativeToChangelogFile: true
+      file: changelog-1.0-create-doctor.yaml
+  - include:
+      relativeToChangelogFile: true
+      file: changelog-2.0-create-patient.yaml
+  - include:
+      relativeToChangelogFile: true
+      file: changelog-3.0-create-visit.yaml
